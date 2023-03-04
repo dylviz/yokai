@@ -73,6 +73,7 @@ function Card({ image, index }) {
       <Image
         src={image}
         boxSize={isCenter ? "400px" : "300px"}
+        alt={"nfts"}
         objectFit="cover"
         objectPosition="center center"
         borderRadius={10}
