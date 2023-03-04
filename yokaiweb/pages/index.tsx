@@ -2,7 +2,9 @@ import Head from "next/head";
 import Image from "next/image";
 import { Inter } from "next/font/google";
 import styles from "@/styles/Home.module.css";
-import Header from "./components/Header";
+import Header from "./components/layout/Header";
+import Footer from "./components/layout/Footer";
+import Sidenav from "./components/layout/Sidenav";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,7 +18,9 @@ import {
   Icon,
   useColorModeValue,
   createIcon,
+  Img,
 } from "@chakra-ui/react";
+import CarouselComp from "./components/CarouselComp";
 
 export default function Home() {
   return (
@@ -37,23 +41,16 @@ export default function Home() {
 
       <Header />
 
+      <Img src="/assets/BANNERS_LOGO/YOKAIBANNER.jpg" />
+
       <Container maxW={"3xl"}>
         <Stack
           as={Box}
-          textAlign={"center"}
+          textAlign={"left"}
           spacing={{ base: 8, md: 14 }}
-          py={{ base: 20, md: 36 }}
+          py={{ base: 20, md: 32 }}
         >
-          <Heading
-            fontWeight={600}
-            fontFamily={"Tokyo-Noir"}
-            color={"yokai.primary"}
-            fontSize={{ base: "2xl", sm: "4xl", md: "6xl" }}
-            lineHeight={"110%"}
-          >
-            YOKAI
-          </Heading>
-          <Text color={"grey.700"}>
+          <p color={"grey.700"}>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
             ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
@@ -61,7 +58,7 @@ export default function Home() {
             reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
             pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
             culpa qui officia deserunt mollit anim id est laborum.
-          </Text>
+          </p>
           <Stack
             direction={"column"}
             spacing={3}
@@ -75,6 +72,10 @@ export default function Home() {
           </Stack>
         </Stack>
       </Container>
+
+      <CarouselComp />
+
+      <Footer />
     </>
   );
 }
