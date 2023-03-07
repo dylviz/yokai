@@ -43,7 +43,10 @@ export default function Home() {
 
       <Img src="/assets/BANNERS_LOGO/YOKAIBANNER.jpg" />
 
-      <Container maxW={"3xl"}>
+      <Container
+        maxW={"4xl"}
+        backgroundImage={"/assets/BANNERS_LOGO/Yokaidesign.png"}
+      >
         <Stack
           as={Box}
           textAlign={"left"}
@@ -66,7 +69,7 @@ export default function Home() {
             alignSelf={"center"}
             position={"relative"}
           >
-            <Button colorScheme={"green"} variant="solid">
+            <Button colorScheme={"red"} variant="solid" w={"200%"}>
               Join Waitlist
             </Button>
           </Stack>

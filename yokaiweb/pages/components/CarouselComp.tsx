@@ -144,7 +144,7 @@ const CarouselComp: React.FC<AliceCarouselProps> = ({}) => {
         activeIndex={activeIndex}
         onSlideChanged={onSlideChange}
       />
-      <Flex pointerEvents="none" pt="180px" w="100%" position="absolute">
+      {/* <Flex pointerEvents="none" pt="180px" w="100%" position="absolute">
         <Icon
           pointerEvents="visible"
           onClick={() => refCar.current && (refCar.current as any).slidePrev()}
@@ -164,7 +164,7 @@ const CarouselComp: React.FC<AliceCarouselProps> = ({}) => {
           h="60px"
           as={IoIosArrowForward}
         />
-      </Flex>
+      </Flex> */}
     </>
   );
 };

@@ -21,25 +21,28 @@ import {
   Icon,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon, ArrowRightIcon } from "@chakra-ui/icons";
+import { AnimatePresence, easeInOut, motion } from "framer-motion";
 import { BsTwitter } from "react-icons/bs";
 
 const Links = ["Wold", "Gallery", "More", "More"];
 
+const MotionBox = motion(Box);
+
 const NavLink = ({ children }: { children: ReactNode }) => (
-  <Link
-    as={Button}
+  <Button
+    as={Link}
     px={2}
     py={1}
     rounded={"md"}
-    // colorScheme="whiteAlpha"
-    // _hover={{
-    //   textDecoration: "none",
-    //   bg: useColorModeValue("gray.300", "gray.700"),
-    // }}
+    variant={"ghost"}
+    color={"whiteAlpha.800"}
+    _hover={{
+      textDecoration: "underline",
+    }}
     href={"#"}
   >
     {children}
-  </Link>
+  </Button>
 );
 
 export default function Header() {
@@ -48,14 +51,15 @@ export default function Header() {
   return (
     <>
       <Box mt={"5"} position="fixed" w="full">
-        <Flex h={16} alignItems={"center"}>
+        <Flex h={16} alignItems={"center"} zIndex={100}>
           <HStack
             bg={useColorModeValue("yokai.primary", "gray.900")}
             h="full"
             p={4}
             pl={6}
-            roundedBottomRight={"md"}
-            roundedTopRight={"md"}
+            zIndex={1}
+            roundedBottomRight={isOpen ? "none" : "md"}
+            roundedTopRight={isOpen ? "none" : "md"}
           >
             <Img src="/assets/BANNERS_LOGO/Yokaidesign.png" w="105px" />
             <IconButton
@@ -65,17 +69,28 @@ export default function Header() {
               aria-label={"Open Menu"}
               onClick={isOpen ? onClose : onOpen}
             />
-
+          </HStack>
+          <AnimatePresence>
             {isOpen ? (
-              <Box>
+              <MotionBox
+                bg={"yokai.primary"}
+                h={"full"}
+                p={4}
+                roundedBottomRight={"md"}
+                roundedTopRight={"md"}
+                initial={{ x: "-100%" }}
+                animate={{ x: 0 }}
+                exit={{ x: "-100%", transition: { duration: 0.1 } }}
+                transition={{ duration: 0.5, ease: "easeInOut" }}
+              >
                 <HStack as={"nav"} spacing={4}>
                   {Links.map((link) => (
                     <NavLink key={link}>{link}</NavLink>
                   ))}
                 </HStack>
-              </Box>
+              </MotionBox>
             ) : null}
-          </HStack>
+          </AnimatePresence>
         </Flex>
       </Box>
 
