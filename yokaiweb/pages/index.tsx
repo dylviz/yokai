@@ -5,6 +5,7 @@ import styles from "@/styles/Home.module.css";
 import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
 import Sidenav from "./components/layout/Sidenav";
+import { Flex } from "@chakra-ui/react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,6 +20,7 @@ import {
   useColorModeValue,
   createIcon,
   Img,
+  LightMode,
 } from "@chakra-ui/react";
 import CarouselComp from "./components/CarouselComp";
 
@@ -43,10 +45,7 @@ export default function Home() {
 
       <Img src="/assets/BANNERS_LOGO/YOKAIBANNER.jpg" />
 
-      <Container
-        maxW={"4xl"}
-        backgroundImage={"/assets/BANNERS_LOGO/Yokaidesign.png"}
-      >
+      <Container maxW={"4xl"}>
         <Stack
           as={Box}
           textAlign={"left"}
@@ -69,13 +68,14 @@ export default function Home() {
             alignSelf={"center"}
             position={"relative"}
           >
-            <Button colorScheme={"red"} variant="solid" w={"200%"}>
-              Join Waitlist
-            </Button>
+            <LightMode>
+              <Button colorScheme={"red"} variant="solid" w={"200%"}>
+                Join Waitlist
+              </Button>
+            </LightMode>
           </Stack>
         </Stack>
       </Container>
-
       <CarouselComp />
 
       <Footer />

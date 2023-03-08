@@ -25,7 +25,7 @@ const CarouselComp: React.FC<AliceCarouselProps> = ({}) => {
   const items = data.map((_, index) => {
     // const ref = useRef();
     return (
-      <Flex w="340px" h="400px" p="0 20px" key={index}>
+      <Flex w="340px" h="400px" p="0 20px" key={index} boxShadow="md">
         <Flex w="100%" h="100%" position="relative">
           <Flex
             w="100%"
@@ -130,7 +130,11 @@ const CarouselComp: React.FC<AliceCarouselProps> = ({}) => {
   };
 
   return (
-    <>
+    <Flex
+      backgroundImage={"/assets/BANNERS_LOGO/Yokaidesign.png"}
+      backgroundSize={"contain"}
+      backgroundPosition={"bottom"}
+    >
       <AliceCar
         ref={refCar as any}
         paddingLeft={carouselPadding}
@@ -165,7 +169,7 @@ const CarouselComp: React.FC<AliceCarouselProps> = ({}) => {
           as={IoIosArrowForward}
         />
       </Flex> */}
-    </>
+    </Flex>
   );
 };
 

@@ -1,4 +1,4 @@
-import { extendTheme } from "@chakra-ui/react"
+import { extendTheme, StyleFunctionProps } from "@chakra-ui/react"
 import { mode } from "@chakra-ui/theme-tools";
 
 export const myTheme = extendTheme({
@@ -11,4 +11,12 @@ export const myTheme = extendTheme({
         initialColorMode: 'light',
         useSystemColorMode: 'false',
     },
+    
+    styles: {
+        global: (props: StyleFunctionProps) => ({
+          body: {
+            //backgroundImage: "/assets/BANNERS_LOGO/Yokaidesign.png",
+          },
+        }),
+      }
 });
