@@ -107,7 +107,7 @@ a {
 }
 @font-face {
   font-family: "Tokyo-Noir";
-  src: url("/fonts/TokyoNoir.otf") format('opentype');
+  src: url('/fonts/TokyoNoir.otf') format('opentype');
 }
 
 p {

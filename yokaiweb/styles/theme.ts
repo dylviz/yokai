@@ -7,4 +7,8 @@ export const myTheme = extendTheme({
             primary : "#CB0000",
         },
     },
+    config:{
+        initialColorMode: 'light',
+        useSystemColorMode: 'false',
+    },
 });

@@ -14,17 +14,23 @@ import {
   MenuItem,
   MenuDivider,
   useDisclosure,
+  useColorMode,
   useColorModeValue,
   Stack,
   Img,
   Spacer,
   Icon,
 } from "@chakra-ui/react";
-import { HamburgerIcon, CloseIcon, ArrowRightIcon } from "@chakra-ui/icons";
+import {
+  HamburgerIcon,
+  CloseIcon,
+  ArrowRightIcon,
+  MoonIcon,
+} from "@chakra-ui/icons";
 import { AnimatePresence, easeInOut, motion } from "framer-motion";
 import { BsTwitter } from "react-icons/bs";
 
-const Links = ["Wold", "Gallery", "More", "More"];
+const Links = ["Wold", "Gallery", "More"];
 
 const MotionBox = motion(Box);
 
@@ -47,13 +53,13 @@ const NavLink = ({ children }: { children: ReactNode }) => (
 
 export default function Header() {
   const { isOpen, onOpen, onClose } = useDisclosure();
-
+  const { colorMode, toggleColorMode } = useColorMode();
   return (
     <>
-      <Box mt={"5"} position="fixed" w="full">
-        <Flex h={16} alignItems={"center"} zIndex={100}>
+      <Box mt={"5"} position="fixed" w="full" zIndex={999}>
+        <Flex h={16} alignItems={"center"}>
           <HStack
-            bg={useColorModeValue("yokai.primary", "gray.900")}
+            bg={"yokai.primary"}
             h="full"
             p={4}
             pl={6}
@@ -87,6 +93,13 @@ export default function Header() {
                   {Links.map((link) => (
                     <NavLink key={link}>{link}</NavLink>
                   ))}
+
+                  <IconButton
+                    variant={"ghost"}
+                    aria-label="Toggle Dark Mode"
+                    icon={<MoonIcon />}
+                    onClick={toggleColorMode}
+                  />
                 </HStack>
               </MotionBox>
             ) : null}
@@ -94,7 +107,7 @@ export default function Header() {
         </Flex>
       </Box>
 
-      <Flex w="full" position={"fixed"} mt={20}>
+      <Flex w="full" position={"fixed"} mt={20} zIndex={999}>
         <Spacer />
         <VStack
           as={"nav"}

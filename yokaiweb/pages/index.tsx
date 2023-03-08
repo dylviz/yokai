@@ -53,7 +53,7 @@ export default function Home() {
           spacing={{ base: 8, md: 14 }}
           py={{ base: 20, md: 32 }}
         >
-          <p color={"grey.700"}>
+          <Text color={"grey.700"} fontFamily={"Tokyo-Noir"}>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
             ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
@@ -61,7 +61,7 @@ export default function Home() {
             reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
             pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
             culpa qui officia deserunt mollit anim id est laborum.
-          </p>
+          </Text>
           <Stack
             direction={"column"}
             spacing={3}
