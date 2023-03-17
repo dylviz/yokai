@@ -2,26 +2,58 @@
 import "viem/window";
 import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
-import { createWalletClient, custom, Account, getAccount } from "viem";
+import {
+  createWalletClient,
+  custom,
+  Account,
+  getAccount,
+  WalletClient,
+} from "viem";
 import { Button } from "@chakra-ui/react";
-
-var walletClient: any;
+import { users } from "@/utils/users";
 
 // function Protected({ message, nftList }) {
 function Protected() {
+  var walletClient: WalletClient;
+  var userAcct: Account;
   const [account, setAccount] = useState<Account>();
+
   if (typeof window !== "undefined" && typeof window.ethereum !== "undefined") {
     walletClient = createWalletClient({
       transport: custom(window.ethereum),
     });
-    console.log("Connected");
   }
 
-  const connect = async () => {
-    function connectW() {}
-    const [address] = await walletClient.requestAddresses();
-    setAccount(getAccount(address));
-  };
+  async function connect() {
+    try {
+      //Get a web3 account
+      const [address] = await walletClient.requestAddresses();
+      userAcct = getAccount(address);
+      setAccount(userAcct);
+
+      //Store user in registry - generate random nonce
+      const authData = await fetch(`/api/auth?address=${userAcct.address}`);
+      const a_data = await authData.json();
+
+      console.log("from db: " + JSON.stringify(a_data));
+
+      //Ask user to sign message
+      const signature = await walletClient.signMessage({
+        account: userAcct,
+        message: a_data.nonce.toString(),
+      });
+
+      //Verify the user's response
+      const response = await fetch(
+        `/api/verify?address=${userAcct.address}&signature=${signature}`
+      );
+      const verifyData = await response.json();
+
+      console.log("Authenticated: " + verifyData.authenticated);
+    } catch (e: any) {
+      console.log(e.message);
+    }
+  }
 
   return (
     <div>
